@@ -58,6 +58,13 @@ This is a free music streaming web application built with Next.js and powered by
    GOOGLE_CLIENT_ID = Google client id  (https://analytify.io/get-google-client-id-and-client-secret)
    GOOGLE_CLIENT_SECRET = Google client secret
 
+   In Google Cloud Console, add these Authorized redirect URIs to the OAuth client:
+   - `http://localhost:3000/api/auth/callback/google` for local development
+   - `https://hayasaka.8man.in/api/auth/callback/google` for production
+
+   Set `NEXTAUTH_URL` to the same site where the app is running. OAuth URLs must match
+   exactly, including the protocol, hostname, and path.
+
 
    MAIL_HOST = mail host (smtp.gmail.com)
    MAIL_USER = mail user (your gmail address)
