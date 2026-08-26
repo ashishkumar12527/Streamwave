@@ -1,6 +1,6 @@
-[![Project Banner](https://github-production-user-asset-6210df.s3.amazonaws.com/99420590/256470702-de779111-e63e-4ecc-93d1-e79edadf19ed.png)](https://hayasaka.8man.in/)
+[![Project Banner](https://github-production-user-asset-6210df.s3.amazonaws.com/99420590/256470702-de779111-e63e-4ecc-93d1-e79edadf19ed.png)](https://streamwave.ashishkumar12527.in/)
 
-https://hayasaka.8man.in
+https://streamwave.ashishkumar12527.in
 
 This is a free music streaming web application built with Next.js and powered by the [savan API](https://github.com/sumitkolhe/jiosaavn-api). The app allows users to search and stream music from a vast collection of songs available on the Saavn platform.
 
@@ -60,7 +60,7 @@ This is a free music streaming web application built with Next.js and powered by
 
    In Google Cloud Console, add these Authorized redirect URIs to the OAuth client:
    - `http://localhost:3000/api/auth/callback/google` for local development
-   - `https://hayasaka.8man.in/api/auth/callback/google` for production
+   - `https://streamwave.ashishkumar12527.in/api/auth/callback/google` for production
 
    Set `NEXTAUTH_URL` to the same site where the app is running. OAuth URLs must match
    exactly, including the protocol, hostname, and path.

@@ -1,9 +1,9 @@
 // Single source of truth for SEO + metadata.
 // If the domain ever changes again, update SITE_URL only.
 
-export const SITE_URL = "https://hayasaka.8man.in";
-export const SITE_NAME = "Hayasaka";
-export const SITE_BRAND = "Hayasaka Music";
+export const SITE_URL = "https://streamwave.ashishkumar12527.in";
+export const SITE_NAME = "Streamwave";
+export const SITE_BRAND = "Streamwave Music";
 export const SITE_TAGLINE = "Free Music Streaming, MP3 Download & Playlists";
 
 export const DEFAULT_TITLE = `${SITE_NAME} - ${SITE_TAGLINE}`;
@@ -11,10 +11,10 @@ export const DEFAULT_DESCRIPTION =
   "Hayasaka is a free music streaming platform. Listen to Bollywood, Hindi, Punjabi, English and regional songs in high quality. Download MP3, build playlists, follow artists, and discover new releases - all without paywalls.";
 
 export const DEFAULT_KEYWORDS = [
-  "hayasaka",
-  "hayasaka music",
-  "hayasaka app",
-  "hayasaka.8man.in",
+  "streamwave",
+  "streamwave music",
+  "streamwave app",
+  "streamwave.ashishkumar12527.in",
   "music streaming",
   "free music streaming",
   "free music download",

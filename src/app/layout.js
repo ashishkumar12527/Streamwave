@@ -127,7 +127,7 @@ const jsonLd = {
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: SITE_NAME,
-      alternateName: ["Hayasaka Music", "Hayasaka App", "Hayasaka.8man.in"],
+      alternateName: ["Streamwave Music", "Streamwave App", "streamwave.ashishkumar12527.in"],
       description: DEFAULT_DESCRIPTION,
       inLanguage: "en-US",
       publisher: { "@id": `${SITE_URL}/#organization` },
