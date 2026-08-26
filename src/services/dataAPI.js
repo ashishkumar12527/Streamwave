@@ -1,9 +1,44 @@
+const MUSIC_API =
+  process.env.NEXT_PUBLIC_SAAVN_API || "https://jiosaavn-api.vercel.app";
+
+const toImageList = (images) => {
+  if (Array.isArray(images)) return images;
+  return [
+    { url: images?.["50x50"] || images || "" },
+    { url: images?.["150x150"] || images || "" },
+    { url: images?.["500x500"] || images || "" },
+  ];
+};
+
+const normalizeSong = (song) => ({
+  ...song,
+  type: "song",
+  name: song?.name || song?.title || song?.song,
+  image: toImageList(song?.image || song?.images),
+  artists: song?.artists || {
+    primary: (song?.primary_artists || song?.more_info?.singers || "")
+      .split(",")
+      .filter(Boolean)
+      .map((name) => ({ name: name.trim() })),
+  },
+});
+
 // home page data
 export async function homePageData(language) {
   try {
     const lang = Array.isArray(language) ? language.join(",") : language?.toString() || "";
+    if (MUSIC_API.includes("jiosaavn-api.vercel.app")) {
+      const response = await fetch(
+        `${MUSIC_API}/api/search?query=${encodeURIComponent("trending " + lang)}`,
+        { next: { revalidate: 86400 } },
+      );
+      if (!response.ok) return null;
+      const data = await response.json();
+      const songs = (data?.results || []).map(normalizeSong);
+      return { trending: { songs }, charts: songs, albums: songs, playlists: songs };
+    }
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/modules?language=${encodeURIComponent(lang)}`,
+      `${MUSIC_API}/api/modules?language=${encodeURIComponent(lang)}`,
       {
         next: {
           revalidate: 86400,
@@ -22,8 +57,23 @@ export async function homePageData(language) {
 // get song data
 export async function getSongData(id) {
   try {
+    if (MUSIC_API.includes("jiosaavn-api.vercel.app")) {
+      const response = await fetch(`${MUSIC_API}/song?id=${encodeURIComponent(id)}`);
+      if (!response.ok) return null;
+      const data = await response.json();
+      const song = data?.song ? { ...data, title: data.song } : data;
+      return normalizeSong({
+        ...song,
+        downloadUrl: [
+          { url: data?.media_urls?.["96_KBPS"] || "" },
+          { url: data?.media_urls?.["160_KBPS"] || "" },
+          { url: data?.media_urls?.["320_KBPS"] || "" },
+          { url: data?.media_url || "" },
+        ],
+      });
+    }
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/songs/${id}`,
+      `${MUSIC_API}/api/songs/${id}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -39,7 +89,7 @@ export async function getSongData(id) {
 export async function getAlbumData(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/albums?id=${id}`,
+      `${MUSIC_API}/api/albums?id=${id}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -54,7 +104,7 @@ export async function getAlbumData(id) {
 export async function getplaylistData(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/playlists?id=${id}&limit=50`,
+      `${MUSIC_API}/api/playlists?id=${id}&limit=50`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -69,7 +119,7 @@ export async function getplaylistData(id) {
 export async function getlyricsData(lyricsId) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/songs/${encodeURIComponent(lyricsId)}/lyrics`,
+      `${MUSIC_API}/api/songs/${encodeURIComponent(lyricsId)}/lyrics`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -84,7 +134,7 @@ export async function getlyricsData(lyricsId) {
 export async function getArtistData(id) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/artists?id=${id}`,
+      `${MUSIC_API}/api/artists?id=${id}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -99,7 +149,7 @@ export async function getArtistData(id) {
 export async function getArtistSongs(id, page) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/artists/${id}/songs?page=${page}&`,
+      `${MUSIC_API}/api/artists/${id}/songs?page=${page}&`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -114,7 +164,7 @@ export async function getArtistSongs(id, page) {
 export async function getArtistAlbums(id, page) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/artists/${id}/albums?page=${page}`,
+      `${MUSIC_API}/api/artists/${id}/albums?page=${page}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -129,7 +179,7 @@ export async function getArtistAlbums(id, page) {
 export async function getSearchedData(query) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/search?query=${query}`,
+      `${MUSIC_API}/api/search?query=${query}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -227,7 +277,7 @@ export async function sendResetPasswordLink(email) {
 export async function getRecommendedSongs(artistId, songId) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SAAVN_API}/api/songs/${songId}/suggestions`,
+      `${MUSIC_API}/api/songs/${songId}/suggestions`,
     );
     if (!response.ok) return null;
     const data = await response.json();
