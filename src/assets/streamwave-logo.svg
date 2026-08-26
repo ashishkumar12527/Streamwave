@@ -1,7 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 604" role="img" aria-labelledby="title desc">
   <title id="title">Streamwave</title>
   <desc id="desc">Streamwave music logo</desc>
-  <rect width="1000" height="220" fill="none"/>
-  <path fill="#00d9d9" d="M92 20c-39 0-70 31-70 70s31 70 70 70c18 0 35-7 48-19l-30-30a25 25 0 1 1-18-43l25-25A69 69 0 0 0 92 20Zm61 24-32 32 31 31-31 31 31 31 63-63-62-62Z"/>
-  <text x="245" y="143" fill="#00d9d9" font-family="Verdana, Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">STREAMWAVE</text>
+  <rect width="1536" height="604" fill="#030408"/>
+  <g fill="none" stroke="#00d9d9" stroke-width="58" stroke-linecap="butt" transform="translate(254 302) rotate(-42)">
+    <circle r="112" stroke-dasharray="295 120 295 120"/>
+  </g>
+  <path fill="#00d9d9" d="M246 244 246 360 337 302Z"/>
+  <text x="456" y="361" fill="#00d9d9" font-family="Arial Black, Arial, sans-serif" font-size="145" font-weight="900" font-style="italic" letter-spacing="-3" transform="skewX(-8)">STREAMWAVE</text>
 </svg>

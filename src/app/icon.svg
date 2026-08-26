@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
   <title id="title">Streamwave</title>
   <rect width="256" height="256" rx="48" fill="#020813"/>
-  <path fill="#00d9d9" d="M128 28c-55 0-100 45-100 100s45 100 100 100c26 0 50-10 68-28l-43-43a38 38 0 1 1-25-68l37-37a99 99 0 0 0-37-24Zm51 34-45 45 44 44-44 44 44 44 74-74-73-73Z"/>
+  <g fill="none" stroke="#00d9d9" stroke-width="25" stroke-linecap="butt" transform="translate(128 128) rotate(-42)">
+    <circle r="57" stroke-dasharray="150 61 150 61"/>
+  </g>
+  <path fill="#00d9d9" d="M124 99v58l46-29Z"/>
 </svg>
