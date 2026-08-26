@@ -21,8 +21,9 @@ const options = {
           await dbConnect();
           console.log("credentials");
           const { email, password } = credentials;
-          const user = await User.findOne({ email });
-          if (user && (await bcrypt.compare(password, user.password))) {
+          const normalizedEmail = email?.trim().toLowerCase();
+          const user = await User.findOne({ email: normalizedEmail });
+          if (user?.password && (await bcrypt.compare(password, user.password))) {
             return user;
           }
           return null;

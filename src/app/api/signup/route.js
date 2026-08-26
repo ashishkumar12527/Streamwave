@@ -7,6 +7,7 @@ import UserData from "@/models/UserData";
 export async function POST(request) {
     try {
         const { userName, email, password, imageUrl } = await request.json();
+        const normalizedEmail = email?.trim().toLowerCase();
 
         if (!userName || !email || !password || !imageUrl) {
             return NextResponse.json(
@@ -20,7 +21,7 @@ export async function POST(request) {
         }
         await dbConnect();
 
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ email: normalizedEmail });
         if (existingUser) {
             return NextResponse.json(
                 {
@@ -36,7 +37,7 @@ export async function POST(request) {
         const userData = await UserData.create({});
         const result = await User.create({ 
             userName,
-            email,
+            email: normalizedEmail,
             password: hashedPassword,
             imageUrl,
             userData: userData._id

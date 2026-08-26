@@ -6,8 +6,10 @@ import Jwt from "jsonwebtoken";
 
 
 export async function POST(request) {
-    const { email, password } = await request.json();
     try {
+        const { email, password } = await request.json();
+        const normalizedEmail = email?.trim().toLowerCase();
+
         if (!email || !password) {
             return NextResponse.json(
                 {
@@ -20,7 +22,7 @@ export async function POST(request) {
         }
         await dbConnect();
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email: normalizedEmail });
         if (!user) {
             return NextResponse.json(
                 {
@@ -31,7 +33,9 @@ export async function POST(request) {
                 { status: 400 }
             );
         }
-        const isPasswordCorrect = await bcrypt.compare(password, user.password);
+        const isPasswordCorrect = user.password
+            ? await bcrypt.compare(password, user.password)
+            : false;
         if (!isPasswordCorrect) {
             return NextResponse.json(
                 {
