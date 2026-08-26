@@ -8,7 +8,7 @@ export const SITE_TAGLINE = "Free Music Streaming, MP3 Download & Playlists";
 
 export const DEFAULT_TITLE = `${SITE_NAME} - ${SITE_TAGLINE}`;
 export const DEFAULT_DESCRIPTION =
-  "Hayasaka is a free music streaming platform. Listen to Bollywood, Hindi, Punjabi, English and regional songs in high quality. Download MP3, build playlists, follow artists, and discover new releases - all without paywalls.";
+  "Streamwave is a free music streaming platform. Listen to Bollywood, Hindi, Punjabi, English and regional songs in high quality. Download MP3, build playlists, follow artists, and discover new releases - all without paywalls.";
 
 export const DEFAULT_KEYWORDS = [
   "streamwave",
@@ -37,9 +37,9 @@ export const DEFAULT_KEYWORDS = [
 ];
 
 export const OG_IMAGE = "/icon-512x512.png";
-export const TWITTER_HANDLE = "@hayasaka_music";
+export const TWITTER_HANDLE = "@streamwave_music";
 
-export const ORG_CONTACT_EMAIL = "fryingpanuu@gmail.com";
+export const ORG_CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "";
 
 // Used only when we need an absolute URL for image/og fields.
 export const absoluteUrl = (path = "/") =>

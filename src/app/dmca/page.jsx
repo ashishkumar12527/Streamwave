@@ -1,4 +1,6 @@
-import { SITE_NAME, SITE_URL, ORG_CONTACT_EMAIL } from "@/utils/siteConfig";
+import { SITE_NAME, SITE_URL } from "@/utils/siteConfig";
+
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
 export const metadata = {
   title: "DMCA & Copyright Policy",
@@ -15,10 +17,15 @@ const Page = () => {
         {SITE_NAME} is a music search engine using open source APIs and does not
         upload or host any files on its server. If you are a valid owner of any
         content listed here and want to remove it, please send us a
-        DMCA-formatted takedown notice at{" "}
-        <a href={`mailto:${ORG_CONTACT_EMAIL}`} className="text-cyan-400">
-          {ORG_CONTACT_EMAIL}
-        </a>
+        DMCA-formatted takedown notice
+        {contactEmail ? (
+          <>
+            {" at "}
+            <a href={`mailto:${contactEmail}`} className="text-cyan-400">
+              {contactEmail}
+            </a>
+          </>
+        ) : null}
         . We will remove your content as soon as possible.
       </p>
 

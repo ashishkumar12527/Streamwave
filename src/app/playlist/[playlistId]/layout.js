@@ -22,7 +22,7 @@ export async function generateMetadata({ params }) {
   if (!playlistData) {
     return {
       title: "Playlist",
-      description: "Listen to this playlist on Hayasaka",
+      description: "Listen to this playlist on Streamwave",
     };
   }
 
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${playlistName} - Playlist`,
-    description: `Listen to ${playlistName} playlist. ${songCount} songs. ${description}. Stream and download all songs for free on Hayasaka.`,
+    description: `Listen to ${playlistName} playlist. ${songCount} songs. ${description}. Stream and download all songs for free on Streamwave.`,
     keywords: [
       playlistName,
       `${playlistName} playlist`,
@@ -42,10 +42,10 @@ export async function generateMetadata({ params }) {
       "stream playlist",
     ],
     openGraph: {
-      title: `${playlistName} Playlist | Hayasaka`,
+      title: `${playlistName} Playlist | Streamwave`,
       description: `Listen to ${playlistName} playlist. ${songCount} songs. Stream and download for free.`,
       url: `${siteUrl}/playlist/${params.playlistId}`,
-      siteName: "Hayasaka",
+      siteName: "Streamwave",
       type: "music.playlist",
       images: playlistData?.image?.[2]?.url
         ? [
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${playlistName} Playlist | Hayasaka`,
+      title: `${playlistName} Playlist | Streamwave`,
       description: `Listen to ${playlistName} playlist. ${songCount} songs. Stream and download for free.`,
       images: playlistData?.image?.[2]?.url ? [playlistData.image[2].url] : [],
     },

@@ -1,5 +1,3 @@
-[![Project Banner](https://github-production-user-asset-6210df.s3.amazonaws.com/99420590/256470702-de779111-e63e-4ecc-93d1-e79edadf19ed.png)](https://streamwave.ashishkumar12527.in/)
-
 https://streamwave.ashishkumar12527.in
 
 This is a free music streaming web application built with Next.js and powered by the [savan API](https://github.com/sumitkolhe/jiosaavn-api). The app allows users to search and stream music from a vast collection of songs available on the Saavn platform.
@@ -16,28 +14,18 @@ This is a free music streaming web application built with Next.js and powered by
 - Responsive and mobile-friendly design for a great user experience.
 - Minimalistic and intuitive user interface.
 
----
-
-![image](https://github.com/himanshu8443/hayasaka/assets/99420590/158bc035-463e-403b-a23a-db17b83ab7b0)
-
----
-
-![image](https://github.com/himanshu8443/hayasaka/assets/99420590/864aec2b-8d60-4278-a475-9f7ee6ae7680)
-
----
-
 ## Installation
 
 1. Clone the repository to your local machine.
 
    ```sh
-   git clone https://github.com/himanshu8443/hayasaka.git
+   git clone https://github.com/ashishkumar12527/Streamwave.git
    ```
 
 2. Install the required packages.
 
    ```sh
-   cd hayasaka
+   cd Streamwave
    ```
 
    ```sh

@@ -2,9 +2,9 @@ import { SITE_URL } from "@/utils/siteConfig";
 
 const POPULAR_SEARCH_TERMS = [
   // Brand boosters
-  "hayasaka",
-  "hayasaka music",
-  "hayasaka songs",
+  "streamwave",
+  "streamwave music",
+  "streamwave songs",
   // Categories
   "trending songs",
   "new songs",

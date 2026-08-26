@@ -3,7 +3,6 @@ import "./globals.css";
 import MusicPlayer from "@/components/MusicPlayer";
 import Providers from "@/redux/Providers";
 import TopProgressBar from "@/components/topProgressBar/TopProgressBar";
-import Favicon from "./favicon.ico";
 import SongsHistory from "@/components/SongsHistory";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "./AuthProvider";
@@ -47,8 +46,8 @@ export const metadata = {
     google: "xKWFwcLg7uqtQGOTNIKraZ8uxuWF9Jxa_By43QL3678",
   },
   icons: [
-    { rel: "icon", url: Favicon.src },
-    { rel: "apple-touch-icon", url: "/icon-192x192.png" },
+    { rel: "icon", url: "/icon.svg", type: "image/svg+xml" },
+    { rel: "apple-touch-icon", url: "/icon.svg" },
   ],
   manifest: "/manifest.json",
   openGraph: {
@@ -106,7 +105,7 @@ export const metadata = {
     "apple-mobile-web-app-title": SITE_NAME,
     "mobile-web-app-capable": "yes",
     "msapplication-TileColor": "#000000",
-    "msapplication-TileImage": "/icon-256x256.png",
+    "msapplication-TileImage": "/icon.svg",
     "theme-color": "#000000",
   },
 };
@@ -146,7 +145,7 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: SITE_NAME,
-      legalName: "Hayasaka Music",
+      legalName: "Streamwave Music",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
@@ -159,13 +158,13 @@ const jsonLd = {
       image: { "@id": `${SITE_URL}/#logo` },
       foundingDate: "2023",
       slogan: SITE_TAGLINE,
-      sameAs: ["https://github.com/himanshu8443/hayasaka"],
+      sameAs: ["https://github.com/ashishkumar12527/Streamwave"],
     },
     {
       "@type": "WebApplication",
       "@id": `${SITE_URL}/#webapp`,
       name: SITE_NAME,
-      alternateName: "Hayasaka Music",
+      alternateName: "Streamwave Music",
       description: DEFAULT_DESCRIPTION,
       url: SITE_URL,
       applicationCategory: "MusicApplication",
@@ -200,34 +199,34 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "Is Hayasaka free to use?",
+          name: "Is Streamwave free to use?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Hayasaka is completely free. You can stream and download music, build playlists, and follow artists without paying anything.",
+            text: "Yes. Streamwave is completely free. You can stream and download music, build playlists, and follow artists without paying anything.",
           },
         },
         {
           "@type": "Question",
-          name: "Do I need to sign up to listen on Hayasaka?",
+          name: "Do I need to sign up to listen on Streamwave?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "You can stream music on Hayasaka without an account. Sign up only if you want to save favorites and create personal playlists synced across devices.",
+            text: "You can stream music on Streamwave without an account. Sign up only if you want to save favorites and create personal playlists synced across devices.",
           },
         },
         {
           "@type": "Question",
-          name: "What languages of songs are available on Hayasaka?",
+          name: "What languages of songs are available on Streamwave?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Hayasaka covers Hindi, English, Punjabi, Tamil, Telugu, Bhojpuri, Marathi, Bengali, Gujarati, and more, including Bollywood and indie tracks.",
+            text: "Streamwave covers Hindi, English, Punjabi, Tamil, Telugu, Bhojpuri, Marathi, Bengali, Gujarati, and more, including Bollywood and indie tracks.",
           },
         },
         {
           "@type": "Question",
-          name: "Can I download MP3 songs from Hayasaka?",
+          name: "Can I download MP3 songs from Streamwave?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Yes. Each track on Hayasaka offers a download option so you can save songs in MP3 format for offline listening.",
+            text: "Yes. Each track on Streamwave offers a download option so you can save songs in MP3 format for offline listening.",
           },
         },
       ],
