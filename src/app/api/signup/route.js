@@ -5,8 +5,9 @@ import bcrypt from "bcryptjs";
 import UserData from "@/models/UserData";
 
 export async function POST(request) {
-    const {userName, email, password, imageUrl } = await request.json();
     try {
+        const { userName, email, password, imageUrl } = await request.json();
+
         if (!userName || !email || !password || !imageUrl) {
             return NextResponse.json(
                 {
@@ -47,12 +48,16 @@ export async function POST(request) {
                 data: result
             }
         );
-    } catch (e) {
-        console.error(e);
+    } catch (error) {
+        console.error("Signup error:", error);
         return NextResponse.json(
             {
                 success: false,
-                message: "Something went wrong",
+                message:
+                    error.message === "Database connection failed" ||
+                    error.message === "Database configuration is missing"
+                        ? "Database is unavailable. Check your MongoDB environment variables."
+                        : "Something went wrong while creating the account",
                 data: null
             },
             { status: 500 }

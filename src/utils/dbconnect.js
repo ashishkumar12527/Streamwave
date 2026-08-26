@@ -1,24 +1,27 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI || process.env.MONGODB_URL;
 const DB_NAME = process.env.DB_NAME;
 
-if (!MONGODB_URI) {
-    throw new Error(
-        "Please define the MONGODB_URI environment variable"
-    )
-}
-
-
 const dbConnect = async () => {
-    if (mongoose.connection.readyState >= 1) {
-        return
+    if (!MONGODB_URI) {
+        throw new Error("Database configuration is missing");
     }
-    return mongoose.connect(MONGODB_URI, {
-        dbName: DB_NAME,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }).then(()=>console.log("connected to db")).catch((err)=>console.log(err));
-}
+
+    if (mongoose.connection.readyState >= 1) {
+        return mongoose.connection;
+    }
+
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            dbName: DB_NAME,
+            serverSelectionTimeoutMS: 10000,
+        });
+        return mongoose.connection;
+    } catch (error) {
+        console.error("MongoDB connection failed:", error.message);
+        throw new Error("Database connection failed");
+    }
+};
 
 export default dbConnect;
