@@ -102,7 +102,12 @@ const Controls = ({
         }}
         className={`${!fullScreen ? "hidden sm:block" : "m-3"} cursor-pointer`}
       />
-      {activeSong?.downloadUrl?.[4]?.url && (
+      {(activeSong?.downloadUrl?.[4]?.url ||
+        activeSong?.downloadUrl?.[3]?.url ||
+        activeSong?.downloadUrl?.[2]?.url ||
+        activeSong?.downloadUrl?.[1]?.url ||
+        activeSong?.downloadUrl?.[0]?.url ||
+        activeSong?.media_url) && (
         <div className=" hidden sm:block mt-1 ">
           <Downloader activeSong={activeSong} fullScreen={fullScreen} />
         </div>

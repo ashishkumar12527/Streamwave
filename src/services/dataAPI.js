@@ -182,10 +182,13 @@ export async function getArtistAlbums(id, page) {
 export async function getSearchedData(query) {
   try {
     const response = await fetch(
-      `${MUSIC_API}/api/search?query=${query}`,
+      `${MUSIC_API}/api/search?query=${encodeURIComponent(query)}`,
     );
     if (!response.ok) return null;
     const data = await response.json();
+    if (MUSIC_API.includes("jiosaavn-api.vercel.app")) {
+      return { songs: (data?.results || []).map(normalizeSong) };
+    }
     return data?.data;
   } catch (error) {
     console.log("getSearchedData error:", error);

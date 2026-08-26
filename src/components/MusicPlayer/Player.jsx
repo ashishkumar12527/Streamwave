@@ -18,14 +18,24 @@ const Player = ({
   appTime,
 }) => {
   const ref = useRef(null);
-  // eslint-disable-next-line no-unused-expressions
-  if (ref.current) {
+  const audioSource =
+    activeSong?.downloadUrl?.[4]?.url ||
+    activeSong?.downloadUrl?.[3]?.url ||
+    activeSong?.downloadUrl?.[2]?.url ||
+    activeSong?.downloadUrl?.[1]?.url ||
+    activeSong?.downloadUrl?.[0]?.url ||
+    activeSong?.media_url ||
+    "";
+
+  useEffect(() => {
+    if (!ref.current || !audioSource) return;
+    ref.current.load();
     if (isPlaying) {
-      ref.current.play();
+      ref.current.play().catch(() => handlePlayPause(false));
     } else {
       ref.current.pause();
     }
-  }
+  }, [audioSource, isPlaying]);
 
   const artistName = Array.isArray(activeSong?.artists?.primary)
     ? activeSong.artists.primary.map((a) => a?.name).join(", ")
@@ -103,12 +113,13 @@ const Player = ({
   return (
     <>
       <audio
-        src={activeSong?.downloadUrl?.[4]?.url || activeSong?.downloadUrl?.[3]?.url || activeSong?.downloadUrl?.[2]?.url || ""}
+        src={audioSource}
         ref={ref}
         loop={repeat}
         onEnded={onEnded}
         onTimeUpdate={onTimeUpdate}
         onLoadedData={onLoadedData}
+        onError={() => handlePlayPause(false)}
       />
     </>
   );
