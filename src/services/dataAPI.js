@@ -1,8 +1,10 @@
 const configuredMusicApi = process.env.NEXT_PUBLIC_SAAVN_API?.replace(/\/$/, "");
 const MUSIC_API =
-  !configuredMusicApi || configuredMusicApi.includes("saavn.dev") || configuredMusicApi.includes("saavn.me")
-    ? "https://jiosaavn-api.vercel.app"
-    : configuredMusicApi;
+  configuredMusicApi &&
+  !configuredMusicApi.includes("saavn.dev") &&
+  !configuredMusicApi.includes("saavn.me")
+    ? configuredMusicApi
+    : "https://jiosaavn-api.vercel.app";
 
 const toImageList = (images) => {
   if (Array.isArray(images)) return images;
